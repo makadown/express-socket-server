@@ -1,3 +1,3 @@
 "use strict";
-const nombre = 'Mario Serrano';
-console.log(`Mi nombre es ${nombre}`);
+const server = new Server();
+server.start();
