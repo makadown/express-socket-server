@@ -10,7 +10,7 @@ router.get('/mensajes', (req: Request, res: Response) => {
 });
 
 router.post('/mensajes', (req: Request, res: Response) => {
-  /*const cuerpo = req.body.cuerpo;
+  const cuerpo = req.body.cuerpo;
     const de     = req.body.de;
 
     res.json({
@@ -18,14 +18,9 @@ router.post('/mensajes', (req: Request, res: Response) => {
         cuerpo,
         de
     });
-*/
-  res.json({
-    ok: true,
-    mensaje: 'Post listo!!'
-  });
 });
 
-/*
+
 router.post('/mensajes/:id', ( req: Request, res: Response  ) => {
 
     const cuerpo = req.body.cuerpo;
@@ -40,6 +35,6 @@ router.post('/mensajes/:id', ( req: Request, res: Response  ) => {
     });
 
 });
-*/
+
 
 export default router;
