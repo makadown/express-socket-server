@@ -6,13 +6,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const server_1 = __importDefault(require("./classes/server"));
 const router_1 = __importDefault(require("./routes/router"));
 const body_parser_1 = __importDefault(require("body-parser"));
-// import cors from 'cors';
+const cors_1 = __importDefault(require("cors"));
 const server = new server_1.default();
 /* BodyParser siempre tiene que configurarse antes de las rutas */
 server.app.use(body_parser_1.default.urlencoded({ extended: true }));
 server.app.use(body_parser_1.default.json());
-// CORS
-// server.app.use( cors({ origin: true, credentials: true  }) );
+/* CORS. Sin esto se bloquea toda peticion. */
+server.app.use(cors_1.default({ origin: true, credentials: true }));
 // Rutas de servicios
 server.app.use('/', router_1.default);
 server.start(() => {
