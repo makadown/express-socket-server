@@ -11,15 +11,15 @@ npm install
 ```
 
 Generar el DIST
-´´´
+```
 tsc -w
-´´´
+```
 
 Levantar server (cualquiera de éstos dos comandos)
-´´´
+```
 nodemon /dist
 node /dist
-´´´
+```
 Ahora, a partir de cada cambio que se haga en index.ts, se reinicia el server actualizando
 el folder dist y su contenido.
 
@@ -28,22 +28,22 @@ el folder dist y su contenido.
 
 Instalar:
 
-´´´
+```
 npm install express
 npm install cors
 npm install body-parser
-´´´
+```
 
 inicializar el ts-config
 
-´´´
+```
 tsc --init
-´´´
+```
 
 Modificar 
 
-´´´
+```
 - el tsconfig.json cambiando el "target": "es6"
 - Descomentar y editar el "outDir": "dist/"
 - decomentar "types": [], 
-´´´ 
+``` 
