@@ -28,21 +28,21 @@ el folder dist y su contenido.
 
 Instalar:
 
-```
+´´´
 npm install express
 npm install cors
 npm install body-parser
-```
+´´´
 
 inicializar el ts-config
 
-```
+´´´
 tsc --init
 ´´´
 
 Modificar 
 
-```
+´´´
 - el tsconfig.json cambiando el "target": "es6"
 - Descomentar y editar el "outDir": "dist/"
 - decomentar "types": [], 
