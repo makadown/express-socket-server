@@ -32,6 +32,8 @@ Instalar:
 npm install express
 npm install cors
 npm install body-parser
+npm install socket.io
+npm install @types/socket.io --save-dev
 ```
 
 inicializar el ts-config
