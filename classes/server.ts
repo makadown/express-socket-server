@@ -7,19 +7,31 @@ import http from 'http';
 
 export default class Server {
 
+    /**
+     * Propiedad estática
+     */
+    private static _instance: Server;
+
     public app: express.Application;
     public port: number;
 
     public io: socketIO.Server;
     private httpServer: http.Server;
 
-    constructor() {
+    private constructor() {
 
         this.app = express();
         this.port = SERVER_PORT;
         this.httpServer = new http.Server(this.app)
         this.io = socketIO( this.httpServer );
         this.escucharSockets();
+    }
+    
+    /**
+     * Obtengo instancia singleton de clase Server.
+     */
+    public static get instance(): Server {
+        return this._instance || ( this._instance = new this() );
     }
 
     private escucharSockets() {

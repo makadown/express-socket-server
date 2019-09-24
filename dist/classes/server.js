@@ -15,6 +15,12 @@ class Server {
         this.io = socket_io_1.default(this.httpServer);
         this.escucharSockets();
     }
+    /**
+     * Obtengo instancia singleton de clase Server.
+     */
+    static get instance() {
+        return this._instance || (this._instance = new this());
+    }
     escucharSockets() {
         console.log('Escuchando conexiones - sockets');
         this.io.on('connection', cliente => {

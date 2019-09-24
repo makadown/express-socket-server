@@ -5,7 +5,7 @@ import cors from 'cors';
 
 
 
-const server = new Server();
+const server = Server.instance;
 
 /* BodyParser siempre tiene que configurarse antes de las rutas */
 server.app.use( bodyParser.urlencoded({ extended: true }) );
