@@ -34,11 +34,15 @@ export default class Server {
         return this._instance || ( this._instance = new this() );
     }
 
+    /**
+     * Se encarga de escuchar sockets
+     */
     private escucharSockets() {
         console.log('Escuchando conexiones - sockets');
         this.io.on('connection', cliente => {
             console.log('Cliente conectado');
-
+            // Mensajes
+            socket.mensaje(cliente);
             // Desconectar
             socket.desconectar(cliente);
         });

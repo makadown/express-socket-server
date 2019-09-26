@@ -29,10 +29,15 @@ class Server {
     static get instance() {
         return this._instance || (this._instance = new this());
     }
+    /**
+     * Se encarga de escuchar sockets
+     */
     escucharSockets() {
         console.log('Escuchando conexiones - sockets');
         this.io.on('connection', cliente => {
             console.log('Cliente conectado');
+            // Mensajes
+            socket.mensaje(cliente);
             // Desconectar
             socket.desconectar(cliente);
         });
