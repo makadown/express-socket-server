@@ -37,7 +37,7 @@ class Server {
         this.io.on('connection', cliente => {
             console.log('Cliente conectado');
             // Mensajes
-            socket.mensaje(cliente);
+            socket.mensaje(cliente, this.io);
             // Desconectar
             socket.desconectar(cliente);
         });
