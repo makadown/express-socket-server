@@ -4,18 +4,24 @@ Proyecto de servidor express de sockers.
 
 Bajo la guía del maestro Fernando Herrera como parte del curso https://www.udemy.com/course/angular-aplicaciones-en-tiempo-real
 
-Para reconstruir módulos de Node
+
+Este es su proyecto cliente:
+https://github.com/makadown/cliente-socket-basico
+
+
+
+Para reconstruir módulos de Node:
 
 ```
 npm install
 ```
 
-Generar el DIST
+Primero generar el DIST
 ```
 tsc -w
 ```
 
-Levantar server (cualquiera de éstos dos comandos)
+Luego levantar server (cualquiera de éstos dos comandos)
 ```
 nodemon /dist
 node /dist
