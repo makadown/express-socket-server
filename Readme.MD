@@ -24,10 +24,14 @@ tsc -w
 Luego levantar server (cualquiera de éstos dos comandos)
 ```
 nodemon /dist
-node /dist
 ```
 Ahora, a partir de cada cambio que se haga en index.ts, se reinicia el server actualizando
 el folder dist y su contenido.
+
+NOTA: En windows, en caso de recibir un error 'cannot be loaded because running scripts is disabled on this system', ejecutar en consola el siguiente comando:
+```
+Set-ExecutionPolicy RemoteSigned
+```
 
 
 ## Instalaciones previas
