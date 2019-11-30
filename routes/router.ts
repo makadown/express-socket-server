@@ -12,38 +12,41 @@ router.get('/mensajes', (req: Request, res: Response) => {
 
 router.post('/mensajes', (req: Request, res: Response) => {
   const cuerpo = req.body.cuerpo;
-    const de     = req.body.de;
+  const de = req.body.de;
 
-    res.json({
-        ok: true,
-        cuerpo,
-        de
-    });
+  const payload = {
+    de,
+    cuerpo
+  };
+  const server = Server.instance;
+  server.io.emit('mensaje-nuevo', payload);
+
+  res.json({
+    ok: true,
+    cuerpo,
+    de
+  });
 });
 
+router.post('/mensajes/:id', (req: Request, res: Response) => {
+  const cuerpo = req.body.cuerpo;
+  const de = req.body.de;
+  const id = req.params.id;
 
-router.post('/mensajes/:id', ( req: Request, res: Response  ) => {
+  const payload = {
+    de,
+    cuerpo
+  };
+  const server = Server.instance;
 
-    const cuerpo = req.body.cuerpo;
-    const de     = req.body.de;
-    const id     = req.params.id;
+  server.io.in(id).emit('mensaje-privado', payload);
 
-    const payload = {
-      de,
-      cuerpo
-    };
-    const server = Server.instance;
-
-    server.io.in(id).emit('mensaje-privado', payload);
-
-    res.json({
-        ok: true,
-        cuerpo,
-        de,
-        id
-    });
-
+  res.json({
+    ok: true,
+    cuerpo,
+    de,
+    id
+  });
 });
-
 
 export default router;
