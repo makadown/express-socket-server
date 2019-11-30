@@ -5,6 +5,9 @@ import socketIO from 'socket.io';
 import http from 'http';
 import * as socket from '../sockets/socket';
 
+/**
+ * Esta clase representa el servidor de chat. Es nuestro backend.
+ */
 export default class Server {
 
     /**

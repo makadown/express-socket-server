@@ -15,6 +15,9 @@ const environment_1 = require("../global/environment");
 const socket_io_1 = __importDefault(require("socket.io"));
 const http_1 = __importDefault(require("http"));
 const socket = __importStar(require("../sockets/socket"));
+/**
+ * Esta clase representa el servidor de chat. Es nuestro backend.
+ */
 class Server {
     constructor() {
         this.app = express_1.default();
