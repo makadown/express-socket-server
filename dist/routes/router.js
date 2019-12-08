@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const server_1 = __importDefault(require("../classes/server"));
+const socket_1 = require("../sockets/socket");
 const router = express_1.Router();
 router.get('/mensajes', (req, res) => {
     res.json({
@@ -58,6 +59,13 @@ router.get('/usuarios', (req, res) => {
             ok: true,
             clientes
         });
+    });
+});
+// Obtener usuarios y sus nombres
+router.get('/usuarios/detalle', (req, res) => {
+    res.json({
+        ok: true,
+        clientes: socket_1.usuariosConectados.getLista()
     });
 });
 exports.default = router;
