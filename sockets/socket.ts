@@ -28,7 +28,7 @@ export const desconectar = (cliente: Socket, io: SocketIO.Server) => {
 };
 
 /**
- * Para escuchar mensajes
+ * Para escuchar mensajes de usuarios
  * @param cliente 
  */
 export const mensaje = (cliente: Socket, io: SocketIO.Server) => {
