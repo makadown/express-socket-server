@@ -6,27 +6,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const server_1 = __importDefault(require("../classes/server"));
 const socket_1 = require("../sockets/socket");
+const grafica_1 = require("../classes/grafica");
 const router = express_1.Router();
-router.get('/mensajes', (req, res) => {
-    res.json({
-        ok: true,
-        mensaje: 'Todo esta bien!!'
-    });
+const grafica = new grafica_1.graficaData();
+router.get('/grafica', (req, res) => {
+    res.json(grafica.getDataGrafica());
 });
-router.post('/mensajes', (req, res) => {
-    const cuerpo = req.body.cuerpo;
-    const de = req.body.de;
-    const payload = {
-        de,
-        cuerpo
-    };
-    const server = server_1.default.instance;
-    server.io.emit('mensaje-nuevo', payload);
-    res.json({
-        ok: true,
-        cuerpo,
-        de
-    });
+router.post('/grafica', (req, res) => {
+    const mes = req.body.mes;
+    const unidades = Number(req.body.unidades);
+    grafica.incrementarValor(mes, unidades);
+    res.json(grafica.getDataGrafica());
 });
 router.post('/mensajes/:id', (req, res) => {
     const cuerpo = req.body.cuerpo;
