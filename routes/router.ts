@@ -1,6 +1,5 @@
 import { Router, Request, Response } from 'express';
 import Server from '../classes/server';
-import { Socket } from 'socket.io';
 import { usuariosConectados } from '../sockets/socket';
 import { graficaData } from '../classes/grafica';
 
@@ -17,6 +16,10 @@ router.post('/grafica', (req: Request, res: Response) => {
   const unidades = Number ( req.body.unidades ) ;
  
   grafica.incrementarValor(  mes, unidades );
+
+  const server = Server.instance;
+  server.io.emit('cambio-grafica', grafica.getDataGrafica() );
+
   res.json( grafica.getDataGrafica() );
 });
 

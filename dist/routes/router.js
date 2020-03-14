@@ -16,6 +16,8 @@ router.post('/grafica', (req, res) => {
     const mes = req.body.mes;
     const unidades = Number(req.body.unidades);
     grafica.incrementarValor(mes, unidades);
+    const server = server_1.default.instance;
+    server.io.emit('cambio-grafica', grafica.getDataGrafica());
     res.json(grafica.getDataGrafica());
 });
 router.post('/mensajes/:id', (req, res) => {
