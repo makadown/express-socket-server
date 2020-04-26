@@ -40,6 +40,8 @@ class Server {
         this.io.on('connection', cliente => {
             // Conectar Cliente
             socket.conectarCliente(cliente, this.io);
+            // Configuracion de mapas
+            socket.mapaSockets(cliente, this.io);
             // Mensajes
             socket.mensaje(cliente, this.io);
             // Desconectar

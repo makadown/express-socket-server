@@ -32,6 +32,11 @@ export class Mapa {
         return this.marcadores;
     }
 
+    agregarMarcador(marcador: Marcador) {
+        // creando nuevo objeto vanillaJs style
+        this.marcadores[marcador.id] = marcador;
+    }
+
     borrarMarcador(id: string) {
         delete this.marcadores[id];
         return this.getMarcadores();

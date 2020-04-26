@@ -1,13 +1,37 @@
 import { Socket } from 'socket.io';
 import { UsuariosLista } from '../classes/usuarios-lista';
 import { Usuario } from '../classes/usuario';
-import Server from '../classes/server';
+import { Mapa } from '../classes/mapa';
+import { Marcador } from '../classes/marcador';
 
 export const usuariosConectados = new UsuariosLista();
+export const mapa = new Mapa();
+
+/*********************************************/
+/******* Eventos de mapa (inicio) ************/
+/*********************************************/
+export const mapaSockets = (cliente: Socket, io: SocketIO.Server) => {
+
+    cliente.on('marcador-nuevo', (marcador: Marcador) => {
+        mapa.agregarMarcador(marcador);
+        /* Emitir a todos excepto el cliente que creó el marcador 
+           para actualizar lista de marcadores mostrados en frontend, 
+         */
+        cliente.broadcast.emit('marcador-nuevo', marcador);
+    });
+
+};
+
+/*********************************************/
+/********** Eventos de mapa (fin)*************/
+/*********************************************/
+
 
 export const conectarCliente = (cliente: Socket, io: SocketIO.Server) => {
     const usuario = new Usuario(cliente.id);
     usuariosConectados.agregar(usuario);
+    console.log('Cliente conectado:');
+    console.log(usuario);
     /* Emitir a todos para actualizar lista de usuarios activos mostrada en frontend */
     io.emit('usuarios-activos', usuariosConectados.getLista());
 };
@@ -63,6 +87,6 @@ export const configurarUsuario = (cliente: Socket, io: SocketIO.Server) => {
 export const obtenerUsuarios = (cliente: Socket, io: SocketIO.Server) => {
     cliente.on('obtener-usuarios', () => {
         // para emitir solo al cliente que se conecta y no a todos
-            io.to(cliente.id).emit('usuarios-activos', usuariosConectados.getLista());
-        });
+        io.to(cliente.id).emit('usuarios-activos', usuariosConectados.getLista());
+    });
 }
