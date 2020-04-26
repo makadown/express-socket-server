@@ -35,6 +35,8 @@ export class Mapa {
     agregarMarcador(marcador: Marcador) {
         // creando nuevo objeto vanillaJs style
         this.marcadores[marcador.id] = marcador;
+       /* console.log('ahora es');
+        console.log(this.marcadores);*/
     }
 
     borrarMarcador(id: string) {

@@ -13,10 +13,13 @@ export const mapa = new Mapa();
 export const mapaSockets = (cliente: Socket, io: SocketIO.Server) => {
 
     cliente.on('marcador-nuevo', (marcador: Marcador) => {
+        /*console.log('recibiendo en server marcador nuevo');
+        console.log(marcador);*/
         mapa.agregarMarcador(marcador);
         /* Emitir a todos excepto el cliente que creó el marcador 
            para actualizar lista de marcadores mostrados en frontend, 
          */
+        // console.log('haciendo broadcast');
         cliente.broadcast.emit('marcador-nuevo', marcador);
     });
 
