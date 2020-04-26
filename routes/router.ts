@@ -2,8 +2,26 @@ import { Router, Request, Response } from 'express';
 import Server from '../classes/server';
 import { usuariosConectados } from '../sockets/socket';
 import { graficaData } from '../classes/grafica';
+import { Mapa } from '../classes/mapa';
 
 const router = Router();
+
+/****************************************************/
+/************* RUTAS DE MAPA (inicio) ***************/
+/****************************************************/
+const mapa = new Mapa();
+
+router.get('/mapa', (req: Request, res: Response) => {
+  res.json( mapa.getMarcadores() );
+});
+
+
+
+/****************************************************/
+/**************** RUTAS DE MAPA (fin) ***************/
+/****************************************************/
+
+// Esto es de clases pasadas.
 
 const grafica = new graficaData();
 

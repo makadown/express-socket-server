@@ -7,7 +7,19 @@ const express_1 = require("express");
 const server_1 = __importDefault(require("../classes/server"));
 const socket_1 = require("../sockets/socket");
 const grafica_1 = require("../classes/grafica");
+const mapa_1 = require("../classes/mapa");
 const router = express_1.Router();
+/****************************************************/
+/************* RUTAS DE MAPA (inicio) ***************/
+/****************************************************/
+const mapa = new mapa_1.Mapa();
+router.get('/mapa', (req, res) => {
+    res.json(mapa.getMarcadores());
+});
+/****************************************************/
+/**************** RUTAS DE MAPA (fin) ***************/
+/****************************************************/
+// Esto es de clases pasadas.
 const grafica = new grafica_1.graficaData();
 router.get('/grafica', (req, res) => {
     res.json(grafica.getDataGrafica());
