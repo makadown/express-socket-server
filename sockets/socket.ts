@@ -3,12 +3,41 @@ import { UsuariosLista } from '../classes/usuarios-lista';
 import { Usuario } from '../classes/usuario';
 import { Mapa } from '../classes/mapa';
 import { Marcador } from '../classes/marcador';
+import { MapaGoogle } from '../classes/mapa-google';
 
 export const usuariosConectados = new UsuariosLista();
 export const mapa = new Mapa();
+export const mapaGoogle = new MapaGoogle();
+
 
 /*********************************************/
-/******* Eventos de mapa (inicio) ************/
+/******* Eventos de mapa google (inicio) ************/
+/*********************************************/
+export const mapaGoogleSockets = (cliente: Socket, io: SocketIO.Server) => {
+
+    cliente.on('marcador-google-nuevo', (marcador: Marcador) => {
+        mapaGoogle.agregarMarcador(marcador);
+        cliente.broadcast.emit('marcador-google-nuevo', marcador);
+    });
+
+    cliente.on('marcador-google-mover', (marcador: Marcador) => {
+        mapaGoogle.moverMarcador(marcador);
+        cliente.broadcast.emit('marcador-google-mover', marcador);
+    });
+
+    cliente.on('marcador-google-borrar', (id: string) => {
+        mapaGoogle.borrarMarcador(id);
+        cliente.broadcast.emit('marcador-google-borrar', id);
+    });
+
+};
+
+/*********************************************/
+/********** Eventos de mapa google (fin)*************/
+/*********************************************/
+
+/*********************************************/
+/******* Eventos de mapa mapbox (inicio) ************/
 /*********************************************/
 export const mapaSockets = (cliente: Socket, io: SocketIO.Server) => {
 
@@ -33,7 +62,7 @@ export const mapaSockets = (cliente: Socket, io: SocketIO.Server) => {
 };
 
 /*********************************************/
-/********** Eventos de mapa (fin)*************/
+/********** Eventos de mapa mapbox (fin)*************/
 /*********************************************/
 
 

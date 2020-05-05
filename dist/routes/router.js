@@ -11,6 +11,9 @@ const router = express_1.Router();
 /****************************************************/
 /************* RUTAS DE MAPA (inicio) ***************/
 /****************************************************/
+router.get('/mapa-google', (req, res) => {
+    res.json(socket_1.mapaGoogle.getMarcadores());
+});
 router.get('/mapa', (req, res) => {
     res.json(socket_1.mapa.getMarcadores());
 });

@@ -1,21 +1,20 @@
 import { Router, Request, Response } from 'express';
 import Server from '../classes/server';
-import { usuariosConectados, mapa } from '../sockets/socket';
+import { usuariosConectados, mapa, mapaGoogle } from '../sockets/socket';
 import { graficaData } from '../classes/grafica';
-import { Mapa } from '../classes/mapa';
 
 const router = Router();
 
 /****************************************************/
 /************* RUTAS DE MAPA (inicio) ***************/
 /****************************************************/
-
+router.get('/mapa-google', (req: Request, res: Response) => {
+  res.json( mapaGoogle.getMarcadores() );
+});
 
 router.get('/mapa', (req: Request, res: Response) => {
   res.json( mapa.getMarcadores() );
 });
-
-
 
 /****************************************************/
 /**************** RUTAS DE MAPA (fin) ***************/

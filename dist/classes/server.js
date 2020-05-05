@@ -41,6 +41,7 @@ class Server {
             // Conectar Cliente
             socket.conectarCliente(cliente, this.io);
             // Configuracion de mapas
+            socket.mapaGoogleSockets(cliente, this.io);
             socket.mapaSockets(cliente, this.io);
             // Mensajes
             socket.mensaje(cliente, this.io);
