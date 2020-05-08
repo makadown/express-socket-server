@@ -1,9 +1,23 @@
 import { Router, Request, Response } from 'express';
 import Server from '../classes/server';
-import { usuariosConectados, mapa, mapaGoogle } from '../sockets/socket';
+import { usuariosConectados, mapa, mapaGoogle, escritorios, tickets, colas } from '../sockets/socket';
 import { graficaData } from '../classes/grafica';
 
 const router = Router();
+
+/*************** Rutas de colas ***********************/
+
+router.get('/escritorios', (req: Request, res: Response) => {
+  res.json( escritorios.getEscritorios() );
+});
+
+router.get('/tickets', (req: Request, res: Response) => {
+  res.json( tickets.getTickets() );
+});
+
+router.get('/cola', (req: Request, res: Response) => {
+  res.json( colas.getCola() );
+});
 
 /****************************************************/
 /************* RUTAS DE MAPA (inicio) ***************/

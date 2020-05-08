@@ -1,6 +1,6 @@
 import { Atencion } from './atencion';
 
-export class cola {
+export class Cola {
     private atenciones: Atencion[] = [];
 
 	constructor() {}

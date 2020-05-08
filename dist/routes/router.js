@@ -8,6 +8,16 @@ const server_1 = __importDefault(require("../classes/server"));
 const socket_1 = require("../sockets/socket");
 const grafica_1 = require("../classes/grafica");
 const router = express_1.Router();
+/*************** Rutas de colas ***********************/
+router.get('/escritorios', (req, res) => {
+    res.json(socket_1.escritorios.getEscritorios());
+});
+router.get('/tickets', (req, res) => {
+    res.json(socket_1.tickets.getTickets());
+});
+router.get('/cola', (req, res) => {
+    res.json(socket_1.colas.getCola());
+});
 /****************************************************/
 /************* RUTAS DE MAPA (inicio) ***************/
 /****************************************************/

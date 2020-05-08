@@ -4,11 +4,39 @@ import { Usuario } from '../classes/usuario';
 import { Mapa } from '../classes/mapa';
 import { Marcador } from '../classes/marcador';
 import { MapaGoogle } from '../classes/mapa-google';
+import { Escritorio } from '../classes/escritorio';
+import { Ticket } from '../classes/ticket';
+import { Cola } from '../classes/cola';
+import { Generico } from '../classes/generico';
+import { Atencion } from '../classes/atencion';
 
 export const usuariosConectados = new UsuariosLista();
 export const mapa = new Mapa();
 export const mapaGoogle = new MapaGoogle();
+// para colas
+export const escritorios = new Escritorio();
+export const tickets = new Ticket();
+export const colas = new Cola();
 
+/**************** Eventos de colas *************************/
+export const colaSockets = (cliente: Socket, io: SocketIO.Server) => {
+
+    cliente.on('crear-escritorio', (escritorio: Generico) => {
+        escritorios.agregarEscritorio(escritorio);
+        cliente.broadcast.emit('crear-escritorio', escritorio);
+    });
+
+    cliente.on('crear-ticket', (ticket: Generico) => {
+        tickets.agregarTicket(ticket);
+        cliente.broadcast.emit('crear-ticket', ticket);
+    });
+
+    cliente.on('agregar-a-cola', (atencion: Atencion) => {
+        colas.agregarACola(atencion);
+        cliente.broadcast.emit('agregar-a-cola', atencion);
+    });
+
+};
 
 /*********************************************/
 /******* Eventos de mapa google (inicio) ************/

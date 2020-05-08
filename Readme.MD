@@ -21,10 +21,18 @@ Primero generar el DIST
 tsc -w
 ```
 
-Luego levantar server (cualquiera de éstos dos comandos)
+Luego levantar server
 ```
 nodemon /dist
 ```
+
+
+OPCION 2 (con concurrently):
+```
+npm run dev
+```
+
+
 Ahora, a partir de cada cambio que se haga en index.ts, se reinicia el server actualizando
 el folder dist y su contenido.
 

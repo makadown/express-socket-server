@@ -40,6 +40,8 @@ class Server {
         this.io.on('connection', cliente => {
             // Conectar Cliente
             socket.conectarCliente(cliente, this.io);
+            // Configuracion para proyecto de colas
+            socket.colaSockets(cliente, this.io);
             // Configuracion de mapas
             socket.mapaGoogleSockets(cliente, this.io);
             socket.mapaSockets(cliente, this.io);
