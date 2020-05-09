@@ -2,8 +2,14 @@
   "name": "socket-server",
   "version": "1.0.0",
   "description": "Proyecto de servidor express de sockers.",
-  "main": "dist\\index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "build-ts": "tsc",
+    "postinstall": "npm run build-ts",
+    "start": "npm run serve",
+    "serve": "node dist/index.js",
+    "watch-node": "nodemon dist/index.js",
+    "watch-ts": "tsc -w",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsc && concurrently \"tsc -w\" \"nodemon /dist\""
   },
