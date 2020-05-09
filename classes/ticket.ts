@@ -13,8 +13,12 @@ export class Ticket {
 		this.tickets.push(ticket);
 	}
 
-	borrarTicket(id: string) {
-		this.tickets = this.tickets.filter((mark) => mark.id !== id);
+	/**
+	 * Metodo creado. Mas no implementeado. Veremos a futuro =)
+	 * @param numero 
+	 */
+	borrarTicket(numero: number) {
+		this.tickets = this.tickets.filter((t) => t.numero !== numero);
 		return this.getTickets();
 	}
 }

@@ -13,6 +13,10 @@ export class Escritorio {
 		this.escritorios.push(escritorio);
 	}
 
+	/**
+	 * Metodo creado. Mas no implementeado. Veremos a futuro =)
+	 * @param id 
+	 */
 	borrarEscritorio(id: string) {
 		this.escritorios = this.escritorios.filter((mark) => mark.id !== id);
 		return this.getEscritorios();

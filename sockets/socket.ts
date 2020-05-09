@@ -13,7 +13,7 @@ import { Atencion } from '../classes/atencion';
 export const usuariosConectados = new UsuariosLista();
 export const mapa = new Mapa();
 export const mapaGoogle = new MapaGoogle();
-// para colas
+// para proyecto de colas
 export const escritorios = new Escritorio();
 export const tickets = new Ticket();
 export const colas = new Cola();
@@ -34,6 +34,11 @@ export const colaSockets = (cliente: Socket, io: SocketIO.Server) => {
     cliente.on('agregar-a-cola', (atencion: Atencion) => {
         colas.agregarACola(atencion);
         cliente.broadcast.emit('agregar-a-cola', atencion);
+        /* al agregar el ticket a cola de atenciones, libero el ticket y 
+          emito su liberación para quitarlo de la lista de espera a los escritorios 
+          activos */
+        tickets.borrarTicket(atencion.ticket.numero);
+        cliente.broadcast.emit('ticket-liberado', atencion.ticket);
     });
 
 };
